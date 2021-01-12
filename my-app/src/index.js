@@ -22,6 +22,11 @@ class Counter extends React.Component {
             inputValue: ''
         };
         this.inputValueChanged = this.inputValueChanged.bind(this);
+        this.addToCounter = this.addToCounter.bind(this);
+        this.setCounter = this.setCounter.bind(this);
+        this.refreshCounter = this.refreshCounter.bind(this);
+        this.deleteCounter = this.deleteCounter.bind(this);
+
     }
 
     componentDidMount() {
