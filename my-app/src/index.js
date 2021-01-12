@@ -211,7 +211,7 @@ class App  extends React.Component {
         const counterElements = [];
 
         for (const counter in this.state.counters) {
-            counterElements.push(<Counter name={counter} />);
+            counterElements.push(<Counter name={this.state.counters[counter]} />);
         }
         return (
         <main>
