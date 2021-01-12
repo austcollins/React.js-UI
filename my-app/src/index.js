@@ -198,7 +198,7 @@ class App  extends React.Component {
                 counters: counters,
             });
         } else {
-            this.props.errorMessage = 'Counter names must only contain numbers and letters (no spaces).'
+            this.setState({errorMessage: 'Counter names must only contain numbers and letters (no spaces).'})
         }
     }
     counterNameInputChanged(evt) {
