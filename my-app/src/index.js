@@ -190,11 +190,13 @@ class App  extends React.Component {
         this.deleteCounterHandler = this.deleteCounterHandler.bind(this)
     }
     addCounter(evt) {
-        const counters = this.state.counters;
-        counters.push(this.state.counterNameInput);
-        this.setState({
-            counters: counters,
-        });
+        if (this.state.counterNameInput != '') {
+            const counters = this.state.counters;
+            counters.push(this.state.counterNameInput);
+            this.setState({
+                counters: counters,
+            });
+        }
     }
     counterNameInputChanged(evt) {
         this.setState({counterNameInput: evt.target.value});
