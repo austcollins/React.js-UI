@@ -1,0 +1,54 @@
+:root {
+    --lightBeige:rgb(213,197,167);
+    --darkBeige:rgb(177,171,158);
+    --lightBlue: rgb(186,192,195);
+    --darkBlue: rgb(117,133,143);
+    --lightGreen: rgb(218,224,217);
+}
+
+main {
+    position: relative;
+    margin: 200px auto;
+    width: min-content;
+    border-left: 5px solid var(--lightBeige);
+    border-right: 5px solid var(--lightBeige);
+}
+main header {
+    background-color: var(--darkBeige);
+}
+main header h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+main footer {
+    padding: 20px;
+    background-color: var(--darkBeige);
+}
+
+#add-counter {
+    text-align: center;
+    background-color: var(--darkBlue);
+    overflow: hidden;
+}
+
+main section#counters {
+    position: relative;
+}
+
+.counter {
+    text-align: center;
+    width: max-content;
+    padding: 5px 10px;
+    background-color: var(--lightBlue);
+    overflow: hidden; /* to prevent name leaking from container */
+    border-top: 2px solid var(--darkBlue);
+}
+.counter .name {
+    padding: 5px;
+    margin:0;
+}
+.counter:nth-child(1) {
+    border-top: none;;
+}
