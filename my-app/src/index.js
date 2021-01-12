@@ -77,6 +77,7 @@ class Counter extends React.Component {
         .then(res => res.text())
       .then(
         (res) => {
+            console.log(res);
           this.setState({
             isLoaded: true,
             value: res
@@ -101,6 +102,7 @@ class Counter extends React.Component {
         .then(res => res.text())
       .then(
         (res) => {
+            console.log(res);
           this.setState({
             isLoaded: true,
             value: res
@@ -126,6 +128,7 @@ class Counter extends React.Component {
         fetch(API_URL + this.state.name, requestOptions)
       .then(
         (res) => {
+            console.log(res);
           this.setState({
             isLoaded: false,
           });
