@@ -27,9 +27,6 @@ class Counter extends React.Component {
         this.setCounter = this.setCounter.bind(this);
         this.refreshCounter = this.refreshCounter.bind(this);
         this.deleteCounter = this.deleteCounter.bind(this);
-        // passed from parent
-        this.deleteCounterHandler = this.deleteCounterHandler.bind(this);
-
     }
 
     componentDidMount() {
@@ -133,7 +130,7 @@ class Counter extends React.Component {
           this.setState({
             isLoaded: false,
           });
-          this.deleteCounterHandler(this.props.name)
+          this.props.deleteCounterHandler(this.props.name)
         },
         (error) => {
           this.setState({
@@ -190,6 +187,7 @@ class App  extends React.Component {
         this.deleteCounterHandler = this.deleteCounterHandler.bind(this);
         this.addCounter = this.addCounter.bind(this);
         this.counterNameInputChanged = this.counterNameInputChanged.bind(this);
+        this.deleteCounterHandler = this.deleteCounterHandler.bind(this)
     }
     addCounter(evt) {
         const counters = this.state.counters;
