@@ -8,22 +8,6 @@ import './index.css';
 
 const API_URL = '/api/';
 
-async function apiRequest(method, path, content, contentType) {
-    const requestOptions = {
-        method: method,
-        headers: { 'Content-Type': contentType },
-        body: content
-    };
-    return fetch(API_URL + path, requestOptions)
-        .then(response => response.text())
-        .then(
-            (error) => {
-
-            }
-        )
-
-}
-
 /**
  * Components
  */
@@ -53,7 +37,7 @@ class Counter extends React.Component {
     }
 
     inputValueChanged(evt) {
-        this.setState({inputValue: event.target.value});
+        this.setState({inputValue: evt.target.value});
     }
 
     updateValue() {
@@ -79,11 +63,11 @@ class Counter extends React.Component {
 
     addToCounter(evt) {
         const requestOptions = {
-            method: method,
+            method: 'POST',
             headers: { 'Content-Type': "TEXT" },
             body: this.state.inputValue
         };
-        fetch(API_URL + this.state.name)
+        fetch(API_URL + this.state.name, requestOptions)
         .then(res => res.text())
       .then(
         (res) => {
