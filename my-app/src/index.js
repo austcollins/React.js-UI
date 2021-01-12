@@ -27,6 +27,8 @@ class Counter extends React.Component {
         this.setCounter = this.setCounter.bind(this);
         this.refreshCounter = this.refreshCounter.bind(this);
         this.deleteCounter = this.deleteCounter.bind(this);
+        // passed from parent
+        this.deleteCounterHandler = this.deleteCounterHandler.bind(this);
 
     }
 
@@ -131,6 +133,7 @@ class Counter extends React.Component {
           this.setState({
             isLoaded: false,
           });
+          this.deleteCounterHandler(this.props.name)
         },
         (error) => {
           this.setState({
@@ -184,7 +187,7 @@ class App  extends React.Component {
             counterNameInput: '',
         }
 
-        this.deleteCounter = this.deleteCounter.bind(this);
+        this.deleteCounterHandler = this.deleteCounterHandler.bind(this);
         this.addCounter = this.addCounter.bind(this);
         this.counterNameInputChanged = this.counterNameInputChanged.bind(this);
     }
@@ -199,7 +202,7 @@ class App  extends React.Component {
     counterNameInputChanged(evt) {
         this.setState({counterNameInput: evt.target.value});
     }
-    deleteCounter(name) {
+    deleteCounterHandler(name) {
         const counters = this.state.counters;
         const index = counters.indexOf(name);
         if (index > -1) {
@@ -211,7 +214,7 @@ class App  extends React.Component {
         const counterElements = [];
 
         for (const counter in this.state.counters) {
-            counterElements.push(<Counter name={this.state.counters[counter]} />);
+            counterElements.push(<Counter name={this.state.counters[counter]} deleteCounterHandler={this.deleteCounterHandler}/>);
         }
         return (
         <main>
