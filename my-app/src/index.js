@@ -194,8 +194,7 @@ class App  extends React.Component {
         counters.push(this.state.counterNameInput);
         this.setState({
             counters: counters,
-            counterNameInput: ''
-    });
+        });
     }
     counterNameInputChanged(evt) {
         this.setState({counterNameInput: evt.target.value});
