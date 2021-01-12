@@ -21,6 +21,7 @@ class Counter extends React.Component {
             value: 0,
             inputValue: ''
         };
+        this.inputValueChanged = this.inputValueChanged.bind(this);
     }
 
     componentDidMount() {
