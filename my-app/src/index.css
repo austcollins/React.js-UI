@@ -15,6 +15,7 @@ main {
 }
 main header {
     background-color: var(--darkBeige);
+    color: #fff;
 }
 main header h1 {
     text-align: center;
@@ -51,4 +52,8 @@ main section#counters {
 }
 .counter:nth-child(1) {
     border-top: none;;
+}
+
+#error {
+    color: red;
 }

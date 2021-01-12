@@ -182,6 +182,7 @@ class App  extends React.Component {
         this.state = {
             counters: [],
             counterNameInput: '',
+            errorMessage: ''
         }
 
         this.deleteCounterHandler = this.deleteCounterHandler.bind(this);
@@ -196,6 +197,8 @@ class App  extends React.Component {
             this.setState({
                 counters: counters,
             });
+        } else {
+            this.props.errorMessage = 'Counter names must only contain numbers and letters (no spaces).'
         }
     }
     counterNameInputChanged(evt) {
@@ -235,7 +238,7 @@ class App  extends React.Component {
                     {counterElements}
                 </section>
                 <footer>
-
+        <p id="error">{this.props.errorMessage}</p>
                 </footer>
         </main>
         );
