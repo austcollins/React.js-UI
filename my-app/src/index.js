@@ -8,6 +8,22 @@ import './index.css';
 
 const API_URL = '/api/';
 
+async function apiRequest(method, path, content, contentType) {
+    const requestOptions = {
+        method: method,
+        headers: { 'Content-Type': contentType },
+        body: content
+    };
+    return fetch(API_URL + path, requestOptions)
+        .then(response => response.text())
+        .then(
+            (error) => {
+
+            }
+        )
+
+}
+
 /**
  * Components
  */
@@ -18,7 +34,8 @@ class Counter extends React.Component {
         this.state = {
             name: props.name,
             isLoaded: false,
-            value: 0
+            value: 0,
+            inputValue: ''
         };
     }
 
@@ -31,9 +48,16 @@ class Counter extends React.Component {
         );
     }
 
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    inputValueChanged(evt) {
+        this.setState({inputValue: event.target.value});
+    }
+
     updateValue() {
         // get the value from the API
-
         fetch(API_URL + this.state.name)
         .then(res => res.text())
       .then(
@@ -44,9 +68,6 @@ class Counter extends React.Component {
             value: res
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -56,9 +77,44 @@ class Counter extends React.Component {
       )
     }
 
-    componentWillUnmount() {
-        clearInterval(this.timerID);
+    addToCounter(evt) {
+        const requestOptions = {
+            method: method,
+            headers: { 'Content-Type': "TEXT" },
+            body: this.state.inputValue
+        };
+        fetch(API_URL + this.state.name)
+        .then(res => res.text())
+      .then(
+        (res) => {
+            console.log(res)
+          this.setState({
+            isLoaded: true,
+            value: res
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
     }
+
+    setCounter(evt) {
+    
+    }
+
+    refreshCounter(evt) {
+
+    }
+
+    deleteCounter(evt) {
+
+    }
+
+
     render() {
         const { error, isLoaded, value } = this.state;
         if (error) {
@@ -78,11 +134,11 @@ class Counter extends React.Component {
             return (
                 <div class="counter">
                         <p class="name">{this.state.name} : {this.state.value}</p>
-                        <input type="number" class="counter_newval"/>
-                        <button class="add">add</button>
-                        <button class="set">set</button>
-                        <button class="delete">delete</button>
-                        <button class="refresh">refresh</button>
+                        <input type="number" class="counter_newval" value={this.state.inputValue} onChange={this.inputValueChanged}/>
+                        <button class="add" onClick={this.addToCounter}>add</button>
+                        <button class="set" onClick={this.setCounter}>set</button>
+                        <button class="delete" onClick={this.deleteCounter}>delete</button>
+                        <button class="refresh" onClick={this.updateValue}>refresh</button>
                 </div>
             );
         }
