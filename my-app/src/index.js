@@ -199,7 +199,7 @@ class App  extends React.Component {
         }
     }
     counterNameInputChanged(evt) {
-        this.setState({counterNameInput: evt.target.value.replace(/\s/g, '')});
+        this.setState({counterNameInput: evt.target.value.replace(/[^a-z0-9]/gi,'')});
     }
     deleteCounterHandler(name) {
         const counters = this.state.counters;
