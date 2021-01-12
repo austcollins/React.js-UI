@@ -94,7 +94,6 @@ class Counter extends React.Component {
     setCounter(evt) {
         const requestOptions = {
             method: 'PUT',
-            headers: { 'Content-Type': "TEXT" },
             body: this.state.inputValue
         };
         fetch(API_URL + this.state.name, requestOptions)
@@ -121,6 +120,7 @@ class Counter extends React.Component {
     }
 
     deleteCounter(evt) {
+        /* TODO: Delete the react component */
         const requestOptions = {
             method: 'DELETE',
         };
