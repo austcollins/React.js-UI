@@ -179,9 +179,30 @@ class Counter extends React.Component {
 class App  extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {counters: []}
+
+        this.deleteCounter = this.deleteCounter.bind(this);
+        this.addCounter = this.addCounter.bind(this);
+    }
+    addCounter(name) {
+        this.setState({
+            counters: this.state.counters.push(name)
+    });
+    }
+    deleteCounter(name) {
+        const counters = this.state.counters;
+        const index = counters.indexOf(name);
+        if (index > -1) {
+            counters.splice(index, 1);
+        }
+        this.setState({counters: counters});
     }
     render() {
+        const counterElements = [];
+
+        for (const counter in this.state.counters) {
+            counterElements.push(<Counter name={counter} />);
+        }
         return (
         <main>
                 <header>
@@ -198,10 +219,7 @@ class App  extends React.Component {
                     </p>
                 </section>
                 <section id="counters">
-                    <Counter name="counter1"/>
-                    <Counter name="counter2" />
-                    <Counter name="counter3" />
-                    <Counter name="counter4" />
+                    {counterElements}
                 </section>
                 <footer>
 
