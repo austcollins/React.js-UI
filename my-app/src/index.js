@@ -179,15 +179,23 @@ class Counter extends React.Component {
 class App  extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {counters: []}
+        this.state = {
+            counters: [],
+            counterNameInput: '',
+        }
 
         this.deleteCounter = this.deleteCounter.bind(this);
         this.addCounter = this.addCounter.bind(this);
+        this.counterNameInputChanged = this.counterNameInputChanged.bind(this);
     }
-    addCounter(name) {
+    addCounter(evt) {
         this.setState({
-            counters: this.state.counters.push(name)
+            counters: this.state.counters.push(this.state.counterNameInput),
+            counterNameInput: ''
     });
+    }
+    counterNameInputChanged(evt) {
+        this.setState({counterNameInput: evt.target.value});
     }
     deleteCounter(name) {
         const counters = this.state.counters;
@@ -213,9 +221,9 @@ class App  extends React.Component {
                         <input  autoFocus id="add-name"
                                 title="only accepts digits and letters a-z"
                                 pattern="[a-zA-Z0-9_]+"
-                                placeholder="Enter name..."
+                                placeholder="Enter name..." onChange={this.counterNameInputChanged}
                         />
-                        <button id="add-counter">Create</button>
+                        <button id="add-counter" onClick={this.addCounter}>Create</button>
                     </p>
                 </section>
                 <section id="counters">
