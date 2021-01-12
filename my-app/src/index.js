@@ -46,7 +46,6 @@ class Counter extends React.Component {
         .then(res => res.text())
       .then(
         (res) => {
-            console.log(res)
           this.setState({
             isLoaded: true,
             value: res
@@ -71,7 +70,6 @@ class Counter extends React.Component {
         .then(res => res.text())
       .then(
         (res) => {
-            console.log(res)
           this.setState({
             isLoaded: true,
             value: res
@@ -87,15 +85,51 @@ class Counter extends React.Component {
     }
 
     setCounter(evt) {
-    
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': "TEXT" },
+            body: this.state.inputValue
+        };
+        fetch(API_URL + this.state.name, requestOptions)
+        .then(res => res.text())
+      .then(
+        (res) => {
+          this.setState({
+            isLoaded: true,
+            value: res
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
     }
 
     refreshCounter(evt) {
-
+        this.updateValue();
     }
 
     deleteCounter(evt) {
-
+        const requestOptions = {
+            method: 'DELETE',
+        };
+        fetch(API_URL + this.state.name, requestOptions)
+      .then(
+        (res) => {
+          this.setState({
+            isLoaded: false,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
     }
 
 
@@ -133,33 +167,39 @@ class Counter extends React.Component {
  * Base Application Component
  */
 
-function App() {
-    return (
-      <main>
-            <header>
-              <h1>Counters</h1>
-            </header>
-            <section id="add-counter">
-                <p>
-                    <input  autoFocus id="add-name"
-                            title="only accepts digits and letters a-z"
-                            pattern="[a-zA-Z0-9_]+"
-                            placeholder="Enter name..."
-                    />
-                    <button id="add-counter">Create</button>
-                </p>
-            </section>
-            <section id="counters">
-                <Counter name="counter1"/>
-                <Counter name="counter2" />
-                <Counter name="counter3" />
-                <Counter name="counter4" />
-            </section>
-            <footer>
+class App  extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    render() {
+        return (
+        <main>
+                <header>
+                <h1>Counters</h1>
+                </header>
+                <section id="add-counter">
+                    <p>
+                        <input  autoFocus id="add-name"
+                                title="only accepts digits and letters a-z"
+                                pattern="[a-zA-Z0-9_]+"
+                                placeholder="Enter name..."
+                        />
+                        <button id="add-counter">Create</button>
+                    </p>
+                </section>
+                <section id="counters">
+                    <Counter name="counter1"/>
+                    <Counter name="counter2" />
+                    <Counter name="counter3" />
+                    <Counter name="counter4" />
+                </section>
+                <footer>
 
-            </footer>
-      </main>
-    );
+                </footer>
+        </main>
+        );
+    }
 }
   
 /**
