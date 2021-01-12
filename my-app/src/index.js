@@ -70,7 +70,6 @@ class Counter extends React.Component {
     addToCounter(evt) {
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': "TEXT" },
             body: this.state.inputValue
         };
         fetch(API_URL + this.state.name, requestOptions)
