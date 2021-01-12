@@ -34,7 +34,7 @@ class Counter extends React.Component {
     updateValue() {
         // get the value from the API
 
-        fetch("https://counters-dot-sse-2019.appspot.com/" + this.state.name)
+        fetch(API_URL + this.state.name)
         .then(res => res.text())
       .then(
         (res) => {
