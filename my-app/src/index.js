@@ -207,6 +207,7 @@ class App  extends React.Component {
             counters.splice(index, 1);
         }
         this.setState({counters: counters});
+        console.log(this.state.counters)
     }
     render() {
         const counterElements = [];
