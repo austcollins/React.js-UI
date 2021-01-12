@@ -189,8 +189,10 @@ class App  extends React.Component {
         this.counterNameInputChanged = this.counterNameInputChanged.bind(this);
     }
     addCounter(evt) {
+        const counters = this.state.counters;
+        counters.push(this.state.counterNameInput);
         this.setState({
-            counters: this.state.counters.push(this.state.counterNameInput),
+            counters: counters,
             counterNameInput: ''
     });
     }
