@@ -6,7 +6,7 @@ import './index.css';
  * API Calls
  */
 
-const API_URL = 'https://counters-dot-sse-2019.appspot.com/';
+const API_URL = '/api/';
 
 /**
  * Components

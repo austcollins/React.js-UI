@@ -11,6 +11,7 @@
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
+  "proxy": "https://counters-dot-sse-2019.appspot.com/",
   "scripts": {
     "start": "PORT=80 react-scripts start",
     "build": "react-scripts build",
