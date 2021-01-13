@@ -43,7 +43,9 @@ class Counter extends React.Component {
     }
 
     inputValueChanged(evt) {
-        this.setState({inputValue: evt.target.value});
+        // Strip all non-numeric characters from the string as these return NaN the API and set the counter to 0.
+        const newValue = evt.target.value.replace(/\D/g,'');
+        this.setState({inputValue: newValue});
     }
 
     updateValue() {
