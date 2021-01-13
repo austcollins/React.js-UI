@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 /**
- * API Calls
+ * API
  */
 
 const API_URL = '/api/';
@@ -143,7 +143,7 @@ class Counter extends React.Component {
 
 
     render() {
-        const { error, isLoaded, value } = this.state;
+        const { error, isLoaded} = this.state;
         if (error) {
             console.log(error);
             return (
