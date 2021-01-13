@@ -5,13 +5,11 @@ import './index.css';
 /**
  * API
  */
-
 const API_URL = '/api/';
 
 /**
  * Components
  */
-
 class Counter extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +26,6 @@ class Counter extends React.Component {
         this.refreshCounter = this.refreshCounter.bind(this);
         this.deleteCounter = this.deleteCounter.bind(this);
     }
-
     componentDidMount() {
         this.updateValue();
         // Set up a timer to update the value every second
@@ -37,17 +34,14 @@ class Counter extends React.Component {
             1000
         );
     }
-
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
-
     inputValueChanged(evt) {
         // Strip all non-numeric characters from the string as these return NaN the API and set the counter to 0.
         const newValue = evt.target.value.replace(/\D/g,'');
         this.setState({inputValue: newValue});
     }
-
     updateValue() {
         // get the value from the API
         fetch(API_URL + this.state.name)
@@ -67,7 +61,6 @@ class Counter extends React.Component {
         }
       )
     }
-
     addToCounter(evt) {
         const requestOptions = {
             method: 'POST',
@@ -91,7 +84,6 @@ class Counter extends React.Component {
         }
       )
     }
-
     setCounter(evt) {
         const requestOptions = {
             method: 'PUT',
@@ -115,11 +107,9 @@ class Counter extends React.Component {
         }
       )
     }
-
     refreshCounter(evt) {
         this.updateValue();
     }
-
     deleteCounter(evt) {
         /* TODO: Delete the react component */
         const requestOptions = {
@@ -142,8 +132,6 @@ class Counter extends React.Component {
         }
       )
     }
-
-
     render() {
         const { error, isLoaded} = this.state;
         if (error) {
@@ -177,7 +165,6 @@ class Counter extends React.Component {
 /**
  * Base Application Component
  */
-
 class App  extends React.Component {
     constructor(props) {
         super(props);
@@ -202,7 +189,9 @@ class App  extends React.Component {
         }
     }
     counterNameInputChanged(evt) {
-        this.setState({counterNameInput: evt.target.value.replace(/[^a-z0-9]/gi,'')});
+        // Only allow numbers and letters (no spaces)
+        const newCounterNameInput = evt.target.value.replace(/[^a-z0-9]/gi,'');
+        this.setState({counterNameInput: newCounterNameInput});
     }
     deleteCounterHandler(name) {
         const counters = this.state.counters;
@@ -248,7 +237,6 @@ class App  extends React.Component {
 /**
  * Initial Render
  */
-
 ReactDOM.render(
     <App />,
     document.getElementById('root')
