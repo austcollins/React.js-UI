@@ -199,8 +199,6 @@ class App  extends React.Component {
             this.setState({
                 counters: counters,
             });
-        } else {
-            this.setState({errorMessage: 'Counter names must only contain numbers and letters (no spaces).'})
         }
     }
     counterNameInputChanged(evt) {
@@ -231,7 +229,7 @@ class App  extends React.Component {
                         <input  autoFocus id="add-name"
                                 title="only accepts digits and letters a-z"
                                 pattern="[a-zA-Z0-9_]+"
-                                placeholder="Enter name..." onChange={this.counterNameInputChanged}
+                                placeholder="Enter name..." value={this.props.counterNameInput} onChange={this.counterNameInputChanged}
                         />
                         <button id="add-counter" onClick={this.addCounter}>Create</button>
                     </p>
