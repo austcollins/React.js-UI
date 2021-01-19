@@ -14,7 +14,7 @@ For development purposes, I've set up the React.js development proxy which redir
 2. Install Node.js
 3. 'git clone https://github.com/austcollins/React.js-UI.git' |OR| Download this repository as a zip and extract
 4. run 'npm install'
-5. run 'npm start'
+5. run 'sudo npm start'
 
 # Assumptions/Decision notes
 - I've left the application in one file instead of code splitting as it's a small applicaiton and doing so wouldn't aid readability.
