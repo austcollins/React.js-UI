@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+/**
+ * Styles
+ */
 import './index.css';
 
 /**
@@ -35,10 +38,11 @@ class Counter extends React.Component {
         );
     }
     componentWillUnmount() {
+        // Clear the timer when the counter is deleted
         clearInterval(this.timerID);
     }
     inputValueChanged(evt) {
-        // Strip all non-numeric characters from the string as these return NaN the API and set the counter to 0.
+        // Strip all non-numeric characters from the string as these return NaN form the API and set the counter to 0.
         const newValue = evt.target.value.replace(/\D/g,'');
         this.setState({inputValue: newValue});
     }
@@ -111,7 +115,6 @@ class Counter extends React.Component {
         this.updateValue();
     }
     deleteCounter(evt) {
-        /* TODO: Delete the react component */
         const requestOptions = {
             method: 'DELETE',
         };
@@ -122,6 +125,7 @@ class Counter extends React.Component {
           this.setState({
             isLoaded: false,
           });
+          // Ask the parent component to delete this counter.
           this.props.deleteCounterHandler(this.props.name)
         },
         (error) => {
@@ -165,7 +169,7 @@ class Counter extends React.Component {
 /**
  * Base Application Component
  */
-class App  extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -193,6 +197,7 @@ class App  extends React.Component {
         const newCounterNameInput = evt.target.value.replace(/[^a-z0-9]/gi,'');
         this.setState({counterNameInput: newCounterNameInput});
     }
+    // Passed to counter components so they can request deletion
     deleteCounterHandler(name) {
         const counters = this.state.counters;
         const index = counters.indexOf(name);
@@ -203,8 +208,8 @@ class App  extends React.Component {
         console.log(this.state.counters)
     }
     render() {
+        // Render all of the counter components as defined by the state
         const counterElements = [];
-
         for (const counter in this.state.counters) {
             counterElements.push(<Counter name={this.state.counters[counter]} deleteCounterHandler={this.deleteCounterHandler}/>);
         }
